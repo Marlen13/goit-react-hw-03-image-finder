@@ -1,17 +1,14 @@
-export const App = () => {
-  return (
-    <></>
-    // <div
-    //   style={{
-    //     height: '100vh',
-    //     display: 'flex',
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     fontSize: 40,
-    //     color: '#010101'
-    //   }}
-    // >
-    //   React homework template
-    // </div>
+import React, { Component } from "react";
+import { SearchBar } from "./Searchbar/Searchbar";
+// import css from 'index.css';
+
+export class App extends Component {
+  render() {
+    return (
+    <>
+        <SearchBar onSubmit={this.onSubmit} />
+    </>
   );
+  }
+  
 };
