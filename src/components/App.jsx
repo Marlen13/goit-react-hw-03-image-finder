@@ -9,7 +9,7 @@ import { Modal } from "./Modal/Modal";
 export class App extends Component {
   state = {
     inputValue: "",
-    images: {},
+    images: [],
     page: 1,
     showModal: true
   }
