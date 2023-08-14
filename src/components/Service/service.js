@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_KEY = '37030497-adb1b30a9790add5f50421470';
 
 axios.defaults.baseURL = 'https://pixabay.com/api/';
-axios.defaults.headers.common['Authorization'] = API_KEY;
+// axios.defaults.headers.common['Authorization'] = API_KEY;
 axios.defaults.params = {
   image_type: 'photo',
   orientation: 'horizontal',
@@ -11,7 +11,7 @@ axios.defaults.params = {
 };
 
 export const getImages = async ({ inputValue, page }) => {
-    const response = await axios.get(`?q=${inputValue}&page=${page}`);
+    const response = await axios.get(`?q=${inputValue}&key=${API_KEY}&page=${page}`);
     return response;
 };
 // const API_KEY = 'iiBMMMUy3ai8Gt939EJY8ogtAWv4TqGQmRP5nCF29sr7V2fanjeGkESR';

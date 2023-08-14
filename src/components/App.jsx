@@ -19,11 +19,11 @@ export class App extends Component {
   }
   async componentDidUpdate(prevProps, prevState) {
     const { inputValue, page } = this.state
-    if (prevState.inputValue !== inputValue || inputValue !== '') {
+    if (prevState.inputValue !== inputValue && inputValue !== '') {
       try {
 
-        const result = await Service.getImages({ inputValue, page });
-        this.setState({ images: result})
+        const { data: { hits } } = await Service.getImages({ inputValue, page });
+        this.setState({ images: hits})
       } catch (error) {
 
       }
@@ -41,12 +41,32 @@ export class App extends Component {
     return (
     <>
         <SearchBar onSubmit={this.handleFormSubmit} />
-        <ImageGallery onClick={this.toggleModal} />
-        <ImageGalleryItem />
+        {this.state.images.length !== 0 && <ImageGallery onClick={this.toggleModal} />}
+        {this.state.images.map((image) => {
+          return < ImageGalleryItem />}
+        ) 
+        }
+        {/* {this.state.images.length !== 0 && (
+          <Grid>
+            {this.state.images.map(({ id, avg_color, large, alt }) => {
+              return (
+                <GridItem key={id}>
+                  <CardItem color={avg_color}>
+                    <img
+                      src={large}
+                      alt={alt}
+                      onClick={this.handleImageClick}
+                    />
+                  </CardItem>
+                </GridItem>
+              );
+            })}
+          </Grid>
+        )} */}
+ 
         {showModal && <Modal
           />}
     </>
   );
-  }
-  
+        }; 
 };
